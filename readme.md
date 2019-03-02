@@ -1,7 +1,7 @@
 ### Meta
 Este archivo está disponible en 3 versiones:
- - [jupyter notebook original](blob/master/readme.ipynb) (avanzado)
- - [html distribuible](raw/master/readme.html) (intermedio: hay que descargar el archivo)
+ - [jupyter notebook original](readme.ipynb) (avanzado)
+ - [html distribuible](../../readme.html) (intermedio: hay que descargar el archivo)
  - mark down online (simplificado: es este archivo)
 ___
 # Lenguaje de programación y testeo estadístico: el caso de Ventanas

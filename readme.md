@@ -1,7 +1,7 @@
 ### Meta
 Este archivo está disponible en 3 versiones:
  - [jupyter notebook original](blob/master/readme.ipynb) (avanzado)
- - [html distribuible]() (intermedio: hay que descargar el archivo)
+ - [html distribuible](raw/master/readme.html) (intermedio: hay que descargar el archivo)
  - mark down online (simplificado: es este archivo)
 ___
 # Lenguaje de programación y testeo estadístico: el caso de Ventanas
@@ -38,7 +38,7 @@ Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario 
 ## Validación
 Para validar esta observación, realizaremos una prueba de permutación:
 
-Tomamos 10.000 muestras del mismo tamaño que el grupo de interés (326) desde el grupo de control, y observaremos la distribución del diagnostico primario de interés en estas muestras, a fin de responder:
+Tomamos 1.000.000 de muestras del mismo tamaño que el grupo de interés (326) desde el grupo de control, y observaremos la distribución del diagnostico primario de interés en estas muestras, a fin de responder:
 
 __¿Qué tan probable es observar la incidencia (34.8%) que se da nuestro grupo de interés, en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control?__ (azar en contraste con casos seleccionados por zona geográfica de interés)
 
@@ -58,17 +58,21 @@ A continuación cuantificamos la observación anterior con los siguientes númer
  
  
 <pre>
-P-value: 0.0006
-Promedio de las muestras: 0.271
-Desviación standard de las muestras: 0.025
-Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.156
+P-value: 0.0011
+Promedio de las muestras: 0.2709
+Desviación standard de las muestras: 0.0247
+Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.12
 </pre>
+## Variaciones en el P-value
+A razón de haber observado variaciones en el primer dígito no-cero del P-value en las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en 2 ordenes de magnitud. Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, se toman sub-muestras del millón de muestras en incrementos de 500. Al graficar, el P-value en estas distintas cantidades de re-muestreos, se observa que con el n inicial de 10.000 se lograba estabilizar en su orden de magnitud (~0.01%), con un millón se logran estabilizar los primeros dos dígitos que no son cero (0.011%).
+
+<img src="assets/variacion-p-values.png">
 
 ## Conclusiones
-Con una posibilidad de 7 en 10.000, de encontrar el nivel de incidencia del diagnóstico _malformaciones congénitas, deformidades y anomalías cromosómicas_ (CIE-10: Q00-Q99) en el nivel que se presenta en la zona de interés (34.8%), podemos asumir que la incidencia mayor observada no es producto del azar. Correspondería a los expertos del área (salud, bioquímica, ecología, etc.) plantear rutas específicas que llevan al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, descartando las causales en sospecha, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
+Con una posibilidad de 0.11% de encontrar el nivel de incidencia del diagnóstico _malformaciones congénitas, deformidades y anomalías cromosómicas_ (CIE-10: Q00-Q99) que se presenta en la zona de interés (34.8%) o mayor, podemos asumir que la incidencia mayor observada no es producto del azar. Correspondería a los expertos del área (salud, bioquímica, ecología, etc.) plantear rutas específicas que llevan al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, descartando las causales en sospecha, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
 
 ### Potencial futuro de la metodología
-La técnica particular de ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una _zona particular_, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vertices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse sugiere el nombre: _Perico_ para tal script que _treparía por Chile_
+La técnica particular puede ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere el nombre: _Perico_ para tal script que _treparía por Chile_
 #### Contacto
 Vera Sativa  
 hola@verasativa.com

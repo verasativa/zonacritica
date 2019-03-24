@@ -1,7 +1,7 @@
 ### Meta
 Este archivo está disponible en 3 versiones:
  - [jupyter notebook original](readme.ipynb) (avanzado)
- - [html distribuible](../../raw/master/readme.html) (intermedio: hay que descargar el archivo)
+ - [html distribuible](../../raw/master/readme.html) (intermedio: click derecho descargar archivo )
  - mark down online (simplificado: es este archivo)
 ___
 # Lenguaje de programación y testeo estadístico: el caso de Ventanas
@@ -76,3 +76,95 @@ La técnica particular puede ser escalada para buscar este tipo de fenómenos a 
 #### Contacto
 Vera Sativa  
 hola@verasativa.com
+
+# Bibliografía
+http://haghish.com/resources/materials/Statistical_Methods_for_Research_Workers.pdf
+
+## Publicaciones sobre la zona:
+[Spatial gradient of human health risk from exposure to trace elements and radioactive pollutants in soils at the Puchuncaví-Ventanas industrial complex, Chile.](https://www.sciencedirect.com/science/article/pii/S0269749116305693)  
+_S. Salmani Ghabeshi, M.R. Palomo Marin, E. Bernalte, F. Rueda Holgado, C. Miro Rodriguez, F. Cereceda Balic, X. Fadic, V. Vidal, M. Funes, E. Pinilla Gil_  
+2016, Environmental Pollution
+
+[Representaciones sociales acerca del impacto medioambiental de las empresas termoeléctricas en la bahía de Quintero-Puchuncaví](https://summapsicologica.cl/index.php/summa/article/view/188)  
+_Claudia Carrasco Aguilar, Pamela Morales Bierschwale, Jenniffer Salazar Fuentes_  
+2015, Summa Psicológica
+
+[Spatial distribution of copper and pH in soils affected by intensive industrial activities in Puchuncaví and Quintero, central Chile](http://jsspn.ufro.cl/index.php?option=com_docman&task=doc_download&gid=451&Itemid=6)  
+_I. Gonzalez, A. Neaman, P. Rubio, A. Cortes_  
+2014, Journal of soil science and plant nutrition
+
+Fractionation of trace elements in total atmospheric deposition by filtrating-bulk passive sampling.  
+_F. Rueda Holgado, M.R. Palomo Marin, L. Calvo Blazquez, F. Cereceda Balic, E. Pinilla Gil_  
+2014, Talanta
+ 
+Selenium and its redox speciation in rainwater from sites of Valparaiso region in Chile, impacted by mining activities of copper ores.  
+_Gregori Ida De, Maria G. Lobos, Hugo Pinochet_  
+2002, Water research
+ 
+Hypo-interventions: Intimate activism in toxic environments.  
+_Manuel Tironi_  
+2018, Social studies of science
+
+Proposed modification to avoidance test with Eisenia fetida to assess metal toxicity in agricultural soils affected by mining activities.  
+_Victor Delgadillo, Jose Verdejo, Pedro Mondaca, Gabriela Verdugo, Hernan Gaete, Mark E. Hodson, Alexander Neaman_  
+2017, Ecotoxicology and Environmental Safety
+ 
+Distribution of trace elements in particle size fractions for contaminated soils by a copper smelting from different zones of the Puchuncaví Valley (Chile).  
+_Sonnia Parra, Manuel A. Bravo, Waldo Quiroz, Teresa Moreno, Angeliki Karanasiou, Oriol Font, Victor Vidal, Francisco Cereceda_  
+2014, Chemosphere
+ 
+Effects of lime and compost on earthworm (Eisenia fetida) reproduction in copper and arsenic contaminated soils from the Puchuncaví Valley, Chile.  
+_Alexander Neaman, Soledad Huerta, Sebastien Sauve_  
+2012, Ecotoxicology and Environmental Safety
+ 
+Long-term assessment of ecological risk from deposition of elemental pollutants in the vicinity of the industrial area of Puchuncaví-Ventanas, central Chile.  
+_Soroush Salmanighabeshi, M. Rosario Palomo Marin, Elena Bernalte, Fernando Rueda Holgado, Conrado Miro Rodriguez, Ximena Fadic Ruiz, Victor Vidal Cortez, Francisco Cereceda Balic, Eduardo Pinilla Gil_  
+2015, The Science of the total environment
+ 
+Simultaneous immobilization of metals and arsenic in acidic polluted soils near a copper smelter in central Chile.  
+_Valeska Carcamo, Elena Bustamante, Elizabeth Trangolao, Luz Maria De La Fuente, Michel Mench, Alexander Neaman, Rosanna Ginocchio_  
+2012, Environmental Science and Pollution Research
+ 
+Copper mobility in contaminated soils of the Puchuncaví valley, central Chile  
+_Alexander Neaman, Luis Reyes, Fabienne Trolard, Guilhem Bourrie, Sebastien Sauve_  
+2009, Geoderma
+ 
+Conflicto ambiental en Ventanas: Análisis desde una perspectiva de la Doctrina Social de la Iglesia  
+_Kay Bergamini Ladron De Guevara, Ricardo Irarrazabal Sanchez, Piroska Angel Hernandez_  
+2018, Revista de Historia y Geografía
+ 
+Temporal and spatial variation of trace elements in atmospheric deposition around the industrial area of Puchuncaví-Ventanas (Chile) and its influence on exceedances of lead and cadmium critical loads in soils.  
+_F. Rueda Holgado, L. Calvo Blazquez, F. Cereceda Balic, E. Pinilla Gil_  
+2016, Chemosphere
+ 
+Amendments promote the development of Lolium perenne in soils affected by historical copper smelting operations.  
+_Paul Goecke, Rosanna Ginocchio, Michel Mench, Alexander Neaman_  
+2011, International Journal of Phytoremediation
+ 
+Acumulación de cobre en una comunidad vegetal afectada por contaminación minera en el valle de Puchuncaví, Chile central  
+_Isabel Gonzalez, Victoria Muena, Mauricio Cisternas, Alexander Neaman_  
+2008, Revista chilena de historia natural
+ 
+MODELACIÓN DE LA DISPERSIÓN DE ANHÍDRIDO SULFUROSO EN LA COMUNA DE LA COMUNA DE PUCHUNCAVÍ UTILIZANDO EL PROGRAMA ISC3  
+_Pamela Lazo, Michel Cure, Hernan Gaete_  
+2006, Ingeniare Revista chilena de ingeniería
+ 
+Monitoring of copper, arsenic and antimony levels in agricultural soils impacted and non-impacted by mining activities, from three regions in Chile.  
+_Ida De Gregori, Edwar Fuentes, Mariela Rojas, Hugo Pinochet, Martine Potin Gautier_  
+2003, Journal of Environmental Monitoring
+ 
+Effects of a copper smelter on a grassland community in the Puchuncaví Valley, Chile.  
+_R. Ginocchio_  
+2000, Chemosphere
+ 
+Comparative Study of Copper and Selenium Pollution in Agricultural Ecosystems from Valparaiso Region, Chile  
+_I. De Gregori, G. Lobos, S. Lobos, H. Pinochet, M. Potin Gautier, M. Astruc_  
+2000, Environmental Technology
+ 
+Acute effects of the breathing of industrial waste and of sulfur dioxide on the respiratory health of children living in the industrial area of Puchuncaví, Chile.  
+_J. Sanchez, I. Romieu, S. Ruiz, P. Pino, M. Gutierrez_  
+1999, Revista Panamericana de Salud Pública
+ 
+Efectos agudos de las partículas respirables y del dióxido de azufre sobre la salud respiratoria en niños del área industrial de Puchuncaví, Chile  
+_Juan Sanchez, Isabelle Romieu, Silvia Ruiz, Paulina Pino, Monica Gutierrez_  
+1999, Revista Panamericana de Salud Pública

@@ -1,14 +1,17 @@
 ---
 title: 'Lenguaje de programación y testeo estadístico: el caso de Ventanas'
+subtitle: Una comparativa entre la zona crítica y resto de Chile
 author: 'Vera Sativa^1^\footnote{Corresponding author – hola@verasativa.com}'
 bibliography: biblio.bib
 csl: canadian-journal-of-public-health.csl
 date: \today
-abstract: 'Utilizando el lenguaje de programación Python, tras unificar los registros anuales de defunciones en Chile 1998-2016 (~1.7M), analizamos los diagnósticos primarios de menores de 16 años, comparando la zona critica bajo la contaminación del complejo industrial Quintero-Ventanas contra el resto de Chile como control. Encontramos incidencias de Malformaciones congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99), 3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto de entre 29.73 a 37.8 muertes de menores en la zona critica por sobre la norma en el resto del país. La metodología se podría escalar a nivel nacional para detectar focos de contaminación desconocidos'
+abstract: 'Utilizando el lenguaje de programación Python, tras unificar los registros anuales de defunciones en Chile 1998-2016 (~1.7M), analizamos los diagnósticos primarios en defunciones de menores de 16 años, comparando la zona critica bajo la contaminación del complejo industrial Quintero-Ventanas, contra el resto de Chile como control. Encontramos incidencias de Malformaciones congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99), 3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto de entre 29.73 a 37.8 muertes de menores en la zona critica por sobre la norma nacional. La metodología se podría ser escalada a todo el país, para detectar focos de contaminación desconocidos.'
 margin-left: 20mm
 margin-right: 20mm
+margin-top: 20mm
+margin-bottom: 20mm
 ---
-
+<!--
 ### Meta 
 
 Este archivo está disponible en 3 versiones: 
@@ -18,14 +21,15 @@ Este archivo está disponible en 3 versiones:
  - mark down online (simplificado: es este archivo) 
  
 ___ 
-
 # Lenguaje de programación y testeo estadístico: el caso de Ventanas 
-## Una comparativa entre la zona crítica y resto de Chile 
+
+-->
+## Una comparativa entre la zona crítica y el resto de Chile 
 ### Introducción 
 Mediante programación en _Python_ fue estandarizar  los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida una [unificación de los registros de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Utilizando el mismo lenguaje de programación testearemos esa hipótesis.
 
 ### Antecedentes
-El impacto ambiental y a la salud humana del complejo industrial Quintero-Ventanas ha sido ampliamente documentado al punto de que el Colegio Medico chileno, dedicara un numero completo de su revista de salud pública _Cuadernos Médico Sociales_ Vol. 59 Nº1 (Marzo 2019). 
+El impacto ambiental y a la salud humana del complejo industrial Quintero-Ventanas ha sido ampliamente documentado al punto de que el Colegio Medico chileno, dedicara un numero completo de su revista de salud pública _Cuadernos Médico Sociales_ [@cms59]
 
 Internacionalmente _The Lancet Commission on pollution and health_  dice que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios han mostrado asociación entre polución ambiental del aire y aumento del riesgo del síndrome de muerte súbita del lactante [@landrigan2017].
 
@@ -90,23 +94,23 @@ Sin embargo, podemos observar en la figura 1, que hay dos diagnósticos primario
 |  10 | Calle Larga  |                  12 |              15436 |      0.307692 |     0.265808 |             39 |         58072 |
 |  11 | Viña del Mar |                 287 |              15161 |      0.304671 |     0.265196 |            942 |         57169 |
 
-Al observar las tablas de incidencia, podemos notar que el diagnósticos primario "Ciertas afecciones originadas en el período perinatal", esta dominado por otras comunas, y no primariamente las de la zona de interés. Y por otra parte el diagnósticos primario de "Malformaciones congénitas, deformidades y anomalías cromosómicas" domina en comunas colindantes al centro industrial.
+Al observar las tablas de incidencia, podemos notar que el diagnóstico primario _Ciertas afecciones originadas en el período perinatal_, está dominado por otras comunas, y no primariamente las de la zona de interés. Y por otra parte el diagnóstico primario de _Malformaciones congénitas, deformidades y anomalías cromosómicas_ domina en comunas colindantes al centro industrial.
 Ante esto, decidimos graficar la incidencia de interés en el mapa.
 
 ![Figura 2: Mapa de incidencias comunales](assets/mapa.png "Figura 2: Mapa de incidencias comunales")
 
 ### Se observa una distribución no-radial: ¿Cómo se explica?
 
-En la figura se puede apreciar que las comunas más afectadas parecen ser las directamente al norte (Puchuncaví, Zapallar, Papudo y La Ligua), al este (Nogales, La Calera y Quillota) e incluso directamente al sur Con-con. 
+En la figura 2 se puede apreciar que las comunas más afectadas parecen ser las directamente al norte (Puchuncaví, Zapallar, Papudo y La Ligua), al este (Nogales, La Calera y Quillota) e incluso directamente al sur Con-con. 
 
-Al observar esta distribución no radial, la investigación parecía no tener sentido y se estancó durante un tiempo. Se sospechaba de un patrón de vientos, pero fue necesario que se nos refiriera la investigación de Patricio Cornejo, Juan López y Sergio Romano 1983 [@cms80], donde se creó un mapa que indica la dispersión de contaminación, desde el complejo industrial Quintero-Ventanas. 
+Al observar esta distribución no radial, la investigación parecía no tener sentido y se estancó durante un tiempo. Se sospechaba de un patrón de vientos, pero fue necesario que se nos refiriera la investigación de Patricio Cornejo, Juan López y Sergio Romano 1983 [@cms80s], donde se creó un mapa que indica la dispersión de contaminación, desde el complejo industrial Quintero-Ventanas. 
 
-Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), vemos una coincidencia interesante. 
+Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), observamos una coincidencia interesante, que nos lleva a continuar. 
 
 ![Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto](assets/mapa-pluma.png "Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto")
 
 ### Diferentes zonas de interés
-Debido a que el mapa y la incidencia de Q00-Q99 parecieran indicar en la dirección opuesta de la comuna de Quintero. Y la sospecha de que Concón tenga su propia fuente de contaminación (Refinería de petróleo ENAP). Analizaremos tres grupos en paralelo: El primero excluyendo Concón y Quintero, el segundo incluyendo ambos, y el tercero incluyendo Concón y excluyendo Quintero. 
+Debido a que el mapa y la incidencia de Q00-Q99 parecieran indicar en la dirección opuesta de la ciudad de Quintero. Y la sospecha de que Concón tenga su propia fuente de contaminación (Refinería de petróleo ENAP). Analizaremos tres grupos en paralelo: El primero excluyendo Concón y Quintero, el segundo incluyendo ambos, y el tercero incluyendo Concón y excluyendo Quintero. 
 
 A continuación, graficamos la incidencia en estos grupos e imprimimos algunos indicadores de representatividad como tamaño del grupo, y cuantos de sus diagnósticos primarios son incluidos en los tops 10 que graficamos.
 
@@ -138,7 +142,8 @@ Fracción del total: 0.980
 ![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
 
 ## Observaciones
-Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario "Malformaciones congénitas, deformidades y anomalías cromosómicas" (CIE-10: Q00-Q99), es considerablemente más alto en los grupos de interés, por sobre el grupo de control (36.7%, 34.2% y 36.7% por sobre 27.2%).
+Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario _Malformaciones congénitas, deformidades y anomalías cromosómicas_ (CIE-10: Q00-Q99), es considerablemente más alto en los grupos de interés, por sobre el resto del país como grupo de control (36.7%, 34.2% y 36.7% por sobre 27.2%).
+
 ## Validación
 Para validar esta observaciones, realizaremos una prueba de permutación:
 
@@ -149,13 +154,14 @@ __¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se 
 ![Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos](assets/distribucion.png "Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos")
 
 ## Otros valores de interés
-El gráfico anterior, muestra que es extremadamente improbable obtener la incidencia del diagnostico primario de interés (malformaciones congénitas, deformidades y anomalías cromosómicas), que se observa la zona de interés, desde muestras del mismo tamaño tomadas al azar desde el resto de Chile.
+En la figura  7 podemos ver la ubicación de las incidencias observadas (línea naranja) con la distribución en grupo de contról, del diagnostico primario _malformaciones congénitas, deformidades y anomalías cromosómicas_.
 
 A continuación cuantificamos la observación anterior con los siguientes números:
+
  - Probabilidad de obtener este resultado o más al azar (P-Value)
  - Incidencia promedio en muestras al azar desde el grupo de control
  - Desviación standard de muestras al azar desde el grupo de control
- - Cuantificación en desviaciones standards de cuanto se aleja la observación de interés desde el promedio de los 10.000 re-muestreos
+ - Cuantificación en desviaciones standards de cuanto se aleja la observación de interés desde el promedio de 1 millón de re-muestreos
 
 ```
 ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
@@ -178,7 +184,7 @@ Distancia entre el promedio de las muestras y el grupo de interés en desviacion
 ```
 
 ## Variaciones en el P-value
-A razón de haber observado variaciones en el primer dígito no-cero del P-value en las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en 2 ordenes de magnitud. Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, se toman sub-muestras del millón de muestras en incrementos de 500. Al graficar, el P-value en estas distintas cantidades de re-muestreos, se observa que con el n inicial de 10.000 se lograba estabilizar en su orden de magnitud (~0.01%), con un millón se logran estabilizar los primeros dos dígitos que no son cero (0.011%).
+A razón de haber observado variaciones en el primer dígito no-cero del P-value en las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en 2 ordenes de magnitud. Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, tomamos sub-muestras del millón de muestras en incrementos de 500. Al graficar el P-value en estas distintas cantidades de re-muestreos, se observa que en el n inicial de 10.000 se lograba estabilizar en su orden de magnitud, pero con un millón se logran estabilizar considerablemente más.
 
 
 ![Figura 8: Variaciones en P-values sobre cantidad de simulaciones](assets/variacion-p-values.png "Figura 8: Variaciones en P-values sobre cantidad de simulaciones")
@@ -194,13 +200,13 @@ Grupo | Distancia DS | P-Value | Comunas
 2 |         3.45 | 0.00002 | ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
 
 
-Tales distancias (3.05, 3.74 y 3.45 desviaciones estandars) entre los valores observados y los promedios del grupo de control, así como los P-values observados en el millón de simulaciones por grupo y su estabilidad observada (figura 8). Muestran __evidencia cuantificada de mortalidad sobre-normal en la zona critica__.
+Tales distancias (3.05, 3.74 y 3.45 desviaciones estandars) entre los valores observados y los promedios del grupo de control (figura 7), así como los P-values observados en el millón de re-muestreos por grupo y su estabilidad observada (figura 8). Muestran __evidencia cuantificada de una mortalidad sobre-normal en la zona critica__.
 
-Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar __estamos observando 29.73, 32.97 y 37.8 muertes de menores de 16 años en la zona, que no observaríamos en el resto de Chile a igual tamaño de muestra.__
+Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar __estamos observando 29.73, 32.97 o 37.8 muertes de menores de 16 años en las zonas analizadas, que no observaríamos en el resto de Chile a igual tamaño de muestra.__
 
-Se recomienda enfáticamente seguir observando estos números mientras la fuente de contaminación siga ahí, y por dos a tres décadas después de que el complejo industrial sea clausurado y la zona descontaminada.
+Se recomienda enfáticamente seguir observando estos números mientras la fuente de contaminación siga ahí, y durante dos a tres décadas después de que el complejo industrial sea clausurado y la zona descontaminada.
 
-Se invita a los expertos relevante (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y decontaminando el área, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
+Se invita a los expertos de las áreas relevantes (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y descontaminando el área, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
 
 ### Potencial futuro de la metodología
-La técnica particular puede ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere el nombre _Perico_ para tal algoritmo que _treparía por Chile_.
+Esta técnica puede ser escalada, para buscar otros fenómenos del mismo tipo, nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere nombrar _Perico_ a tal algoritmo que _treparía por Chile_.

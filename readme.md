@@ -50,7 +50,7 @@ Total defunciones en los 10 principales diagnósticos primarios del grupo de int
 Fracción del total: 0.992
 ```
 
-![Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)](assets/10-diagnósticos-(Quintero-Puchuncaví).png "Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)")
+![Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)](assets/10-diagnosticos-(Quintero-Puchuncavi).png "Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)")
 
 
 
@@ -117,7 +117,7 @@ Total defunciones en los 10 principales diagnósticos primarios del grupo de int
 Fracción del total: 0.984
 ```
 
-![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
+![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
 
 ```
 Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón', 'Quintero']
@@ -126,7 +126,7 @@ Total defunciones en los 10 principales diagnósticos primarios del grupo de int
 Fracción del total: 0.981
 ```
 
-![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
+![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
 
 ```
 Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
@@ -135,7 +135,7 @@ Total defunciones en los 10 principales diagnósticos primarios del grupo de int
 Fracción del total: 0.980
 ```
 
-![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
+![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
 
 ## Observaciones
 Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario "Malformaciones congénitas, deformidades y anomalías cromosómicas" (CIE-10: Q00-Q99), es considerablemente más alto en los grupos de interés, por sobre el grupo de control (36.7%, 34.2% y 36.7% por sobre 27.2%).
@@ -196,11 +196,11 @@ Grupo | Distancia DS | P-Value | Comunas
 
 Tales distancias (3.05, 3.74 y 3.45 desviaciones estandars) entre los valores observados y los promedios del grupo de control, así como los P-values observados en el millón de simulaciones por grupo y su estabilidad observada (figura 8). Muestran __evidencia cuantificada de mortalidad sobre-normal en la zona critica__.
 
-Si le restamos la incidencia nacional esperada $ (0.272  * 313, 0.272 * 471, 0.272 * 398) $ a los grupos de análisis $ (0.367  * 313, 0.342 * 471, 0.367 * 398) $ podremos estimar __estamos observando 29.73, 32.97 y 37.8 muertes de menores de 16 años en la zona, que no observaríamos en el resto de Chile a igual tamaño de muestra.__
+Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar __estamos observando 29.73, 32.97 y 37.8 muertes de menores de 16 años en la zona, que no observaríamos en el resto de Chile a igual tamaño de muestra.__
 
 Se recomienda enfáticamente seguir observando estos números mientras la fuente de contaminación siga ahí, y por dos a tres décadas después de que el complejo industrial sea clausurado y la zona descontaminada.
 
-Se invita a los expertos relevante (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y decontaminando el aréa, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
+Se invita a los expertos relevante (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y decontaminando el área, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
 
 ### Potencial futuro de la metodología
 La técnica particular puede ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere el nombre _Perico_ para tal algoritmo que _treparía por Chile_.

@@ -1,15 +1,16 @@
 ---
 title: 'Lenguaje de programación y testeo estadístico: el caso de Ventanas'
-subtitle: Una comparativa entre la zona crítica y resto de Chile
-author: 'Vera Sativa^1^\footnote{Corresponding author – hola@verasativa.com}'
+subtitle: 'Una comparativa entre la zona crítica y resto de Chile' 
+author: 'Vera Sativa\footnote{Corresponding author – hola@verasativa.com}'
 bibliography: biblio.bib
 csl: canadian-journal-of-public-health.csl
 date: \today
 abstract: 'Utilizando el lenguaje de programación Python, tras unificar los registros anuales de defunciones en Chile 1998-2016 (~1.7M), analizamos los diagnósticos primarios en defunciones de menores de 16 años, comparando la zona critica bajo la contaminación del complejo industrial Quintero-Ventanas, contra el resto de Chile como control. Encontramos incidencias de Malformaciones congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99), 3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto de entre 29.73 a 37.8 muertes de menores en la zona critica por sobre la norma nacional. La metodología se podría ser escalada a todo el país, para detectar focos de contaminación desconocidos.'
 margin-left: 20mm
 margin-right: 20mm
-margin-top: 20mm
-margin-bottom: 20mm
+margin-top: 18mm
+margin-bottom: 22mm
+links-as-notes: true
 ---
 <!--
 ### Meta 
@@ -209,4 +210,4 @@ Se recomienda enfáticamente seguir observando estos números mientras la fuente
 Se invita a los expertos de las áreas relevantes (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y descontaminando el área, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
 
 ### Potencial futuro de la metodología
-Esta técnica puede ser escalada, para buscar otros fenómenos del mismo tipo, nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere nombrar _Perico_ a tal algoritmo que _treparía por Chile_.
+Esta técnica puede ser escalada, para buscar otros fenómenos del mismo tipo, nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [los vectores de comunas de la biblioteca del congreso](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere nombrar _Perico_ a tal algoritmo que _treparía por Chile_.

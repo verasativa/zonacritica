@@ -1,51 +1,152 @@
-### Meta
-Este archivo está disponible en 3 versiones:
+---
+title: 'Lenguaje de programación y testeo estadístico: el caso de Ventanas'
+author: 'Vera Sativa^1^\footnote{Corresponding author – hola@verasativa.com}'
+bibliography: biblio.bib
+csl: canadian-journal-of-public-health.csl
+date: \today
+abstract: 'Utilizando el lenguaje de programación Python, tras unificar los registros anuales de defunciones en Chile 1998-2016 (~1.7M), analizamos los diagnósticos primarios de menores de 16 años, comparando la zona critica bajo la contaminación del complejo industrial Quintero-Ventanas contra el resto de Chile como control. Encontramos incidencias de Malformaciones congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99), 3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto de entre 29.73 a 37.8 muertes de menores en la zona critica por sobre la norma en el resto del país. La metodología se podría escalar a nivel nacional para detectar focos de contaminación desconocidos'
+margin-left: 20mm
+margin-right: 20mm
+---
+
+### Meta 
+
+Este archivo está disponible en 3 versiones: 
+
  - [jupyter notebook original](readme.ipynb) (avanzado)
  - [html distribuible](../../raw/master/readme.html) (intermedio: click derecho descargar archivo )
- - mark down online (simplificado: es este archivo)
-___
-# Lenguaje de programación y testeo estadístico: el caso de Ventanas
-## Una comparativa entre la zona crítica y resto de Chile
-### Introducción
-Mediante programación en phyton es posible estandarizar en forma sencilla los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida una [unificación de los registros de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Con el mismo lenguaje de programación podría testearse esa hipótesis.
+ - mark down online (simplificado: es este archivo) 
+ 
+___ 
+
+# Lenguaje de programación y testeo estadístico: el caso de Ventanas 
+## Una comparativa entre la zona crítica y resto de Chile 
+### Introducción 
+Mediante programación en _Python_ fue estandarizar  los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida una [unificación de los registros de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Utilizando el mismo lenguaje de programación testearemos esa hipótesis.
+
+### Antecedentes
+El impacto ambiental y a la salud humana del complejo industrial Quintero-Ventanas ha sido ampliamente documentado al punto de que el Colegio Medico chileno, dedicara un numero completo de su revista de salud pública _Cuadernos Médico Sociales_ Vol. 59 Nº1 (Marzo 2019). 
+
+Internacionalmente _The Lancet Commission on pollution and health_  dice que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios han mostrado asociación entre polución ambiental del aire y aumento del riesgo del síndrome de muerte súbita del lactante [@landrigan2017].
+
 ### Comparación de diagnósticos primarios
 Apalancándose en la integración jerárquica, de los códigos de diagnóstico CIE-10 en el dataset. Una comparación de éstos, se presenta como la opción más evidente y atractiva, pero con algunas consideraciones.
+
 ### Limitaciones
 Dado que este dataset solo incluye las defunciones, y no contiene información sobre la población general, no es posible hacer un análisis respecto a tasas de ocurrencia, sin tener que argumentar con otros datos como censos. Además la ruralidad de la zona, conjugada con la migración campo-ciudad, produce una población envejecida. Tampoco podemos hacer un análisis sobre la distribución etaria de la mortalidad, ni la distribución de diagnósticos primarios en la población general, sin normalizar primero con datos adicionales.
+
 ### Pregunta de investigación
 Con esas limitaciones en mente, podemos plantear una pregunta sencilla, pero contestable:
 
 __¿Como se comparan los diagnósticos primarios de defunciones, en la zona de interés con respecto al resto del país, en menores de 16 años?__
 
-__Algunos datos sobre los grupos:__
+### Proceso exploratorio: definiendo la "zona de interés"
+Inicialmente se exploró, como zona de interés solamente las comunas de Quintero y Puchuncaví, razón de ser las directamente colindates con el foco industrial de contaminación.
 
-<pre>
-Total defunciones en el grupo de control: 57785
-Total defunciones en los 10 principales diagnósticos primarios del grupo de control: 56422
-Fracción del total: 0.976
-</pre>
+```
+Zona de interés: ['Quintero', 'Puchuncaví']
+Total defunciones en el grupo de interés: 119
+Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 118
+Fracción del total: 0.992
+```
 
-<pre>
-Total defunciones en el grupo de control: 57785
-Total defunciones en los 10 principales diagnósticos primarios del grupo de control: 56422
-Fracción del total: 0.976
-</pre>
+![Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)](assets/10-diagnósticos-(Quintero-Puchuncaví).png "Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)")
 
-<img src="assets/10diagnosticos.png">
+
+
+Sin embargo, podemos observar en la figura 1, que hay dos diagnósticos primarios que presentan incidencias superiores a la nacional, con la intención de buscar una tendencia más clara y validable (tamaño de la muestra), exploramos la incidencia de estos dos diagnósticos primarios en todas las comunas de la quinta región.
+
+### Ciertas afecciones originadas en el período perinatal (P00-P96)
+
+|   # | Comuna      |   Incidencia comuna |   Incidencia otros |   Taza comuna |   Taza otros |   Total comuna |   Total otros |
+|-----|-------------|---------------------|--------------------|---------------|--------------|----------------|---------------|
+|   0 | La Cruz     |                  26 |              15957 |      0.509804 |     0.274836 |             51 |         58060 |
+|   1 | Rinconada   |                  15 |              15968 |      0.46875  |     0.274936 |             32 |         58079 |
+|   2 | San Felipe  |                 109 |              15874 |      0.37457  |     0.274542 |            291 |         57820 |
+|   3 | Olmué       |                  17 |              15966 |      0.369565 |     0.274968 |             46 |         58065 |
+|   4 | El Tabo     |                   7 |              15976 |      0.368421 |     0.275012 |             19 |         58092 |
+|   5 | San Esteban |                  15 |              15968 |      0.357143 |     0.274983 |             42 |         58069 |
+|   6 | Cartagena   |                  18 |              15965 |      0.339623 |     0.274984 |             53 |         58058 |
+|   7 | Llaillay    |                  28 |              15955 |      0.337349 |     0.274953 |             83 |         58028 |
+|   8 | Calle Larga |                  13 |              15970 |      0.333333 |     0.275003 |             39 |         58072 |
+|   9 | Algarrobo   |                  11 |              15972 |      0.323529 |     0.275014 |             34 |         58077 |
+|  10 | Quintero    |                  23 |              15960 |      0.315068 |     0.274992 |             73 |         58038 |
+|  11 | Hijuelas    |                  23 |              15960 |      0.310811 |     0.274997 |             74 |         58037 |
+
+### Malformaciones congénitas, deformidades y anomalías cromosómicas (Q00-Q99)
+
+|   # | Comuna       |   Incidencia comuna |   Incidencia otros |   Taza comuna |   Taza otros |   Total comuna |   Total otros |
+|-----|--------------|---------------------|--------------------|---------------|--------------|----------------|---------------|
+|   0 | Puchuncaví   |                  20 |              15428 |      0.434783 |     0.265702 |             46 |         58065 |
+|   1 | Zapallar     |                   6 |              15442 |      0.428571 |     0.265797 |             14 |         58097 |
+|   2 | Papudo       |                   3 |              15445 |      0.375    |     0.265821 |              8 |         58103 |
+|   3 | La Ligua     |                  37 |              15411 |      0.37     |     0.265657 |            100 |         58011 |
+|   4 | Concón       |                  30 |              15418 |      0.352941 |     0.265708 |             85 |         58026 |
+|   5 | Nogales      |                  20 |              15428 |      0.333333 |     0.265766 |             60 |         58051 |
+|   6 | Cabildo      |                  20 |              15428 |      0.333333 |     0.265766 |             60 |         58051 |
+|   7 | Putaendo     |                  19 |              15429 |      0.322034 |     0.265779 |             59 |         58052 |
+|   8 | El Tabo      |                   6 |              15442 |      0.315789 |     0.26582  |             19 |         58092 |
+|   9 | Quillota     |                  78 |              15370 |      0.3083   |     0.26565  |            253 |         57858 |
+|  10 | Calle Larga  |                  12 |              15436 |      0.307692 |     0.265808 |             39 |         58072 |
+|  11 | Viña del Mar |                 287 |              15161 |      0.304671 |     0.265196 |            942 |         57169 |
+
+Al observar las tablas de incidencia, podemos notar que el diagnósticos primario "Ciertas afecciones originadas en el período perinatal", esta dominado por otras comunas, y no primariamente las de la zona de interés. Y por otra parte el diagnósticos primario de "Malformaciones congénitas, deformidades y anomalías cromosómicas" domina en comunas colindantes al centro industrial.
+Ante esto, decidimos graficar la incidencia de interés en el mapa.
+
+![Figura 2: Mapa de incidencias comunales](assets/mapa.png "Figura 2: Mapa de incidencias comunales")
+
+### Se observa una distribución no-radial: ¿Cómo se explica?
+
+En la figura se puede apreciar que las comunas más afectadas parecen ser las directamente al norte (Puchuncaví, Zapallar, Papudo y La Ligua), al este (Nogales, La Calera y Quillota) e incluso directamente al sur Con-con. 
+
+Al observar esta distribución no radial, la investigación parecía no tener sentido y se estancó durante un tiempo. Se sospechaba de un patrón de vientos, pero fue necesario que se nos refiriera la investigación de Patricio Cornejo, Juan López y Sergio Romano 1983 [@cms80], donde se creó un mapa que indica la dispersión de contaminación, desde el complejo industrial Quintero-Ventanas. 
+
+Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), vemos una coincidencia interesante. 
+
+![Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto](assets/mapa-pluma.png "Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto")
+
+### Diferentes zonas de interés
+Debido a que el mapa y la incidencia de Q00-Q99 parecieran indicar en la dirección opuesta de la comuna de Quintero. Y la sospecha de que Concón tenga su propia fuente de contaminación (Refinería de petróleo ENAP). Analizaremos tres grupos en paralelo: El primero excluyendo Concón y Quintero, el segundo incluyendo ambos, y el tercero incluyendo Concón y excluyendo Quintero. 
+
+A continuación, graficamos la incidencia en estos grupos e imprimimos algunos indicadores de representatividad como tamaño del grupo, y cuantos de sus diagnósticos primarios son incluidos en los tops 10 que graficamos.
+
+```
+Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
+Total defunciones en el grupo de interés: 313
+Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 308
+Fracción del total: 0.984
+```
+
+![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
+
+```
+Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón', 'Quintero']
+Total defunciones en el grupo de interés: 471
+Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 462
+Fracción del total: 0.981
+```
+
+![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
+
+```
+Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
+Total defunciones en el grupo de interés: 398
+Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 390
+Fracción del total: 0.980
+```
+
+![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnósticos-(Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
 
 ## Observaciones
-Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario "Malformaciones congénitas, deformidades y anomalías cromosómicas" (CIE-10: Q00-Q99), es considerablemente más alto en el grupo de interés, por sobre el grupo de control (34.8% por sobre 27.2%).
+Al comparar estos gráficos, inmediatamente notamos que el diagnostico primario "Malformaciones congénitas, deformidades y anomalías cromosómicas" (CIE-10: Q00-Q99), es considerablemente más alto en los grupos de interés, por sobre el grupo de control (36.7%, 34.2% y 36.7% por sobre 27.2%).
 ## Validación
-Para validar esta observación, realizaremos una prueba de permutación:
+Para validar esta observaciones, realizaremos una prueba de permutación:
 
-Tomamos 1.000.000 de muestras del mismo tamaño que el grupo de interés (326) desde el grupo de control, y observaremos la distribución del diagnostico primario de interés en estas muestras, a fin de responder:
+Por cada grupo tomaremos 1.000.000 de muestras del mismo tamaño que el grupo de interés (308, 471 y 398) desde el grupo de control, y observaremos la distribución del diagnóstico primario de interés en estas muestras, a fin de responder:
 
-__¿Qué tan probable es observar la incidencia (34.8%) que se da nuestro grupo de interés, en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control?__ (azar en contraste con casos seleccionados por zona geográfica de interés)
+__¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se dan nuestros grupos de interés, en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control?__ (azar en contraste con casos seleccionados por zona geográfica de interés)
 
-## Distribución del diagnostico de interés en las permutaciones
-A continuación graficamos la distribución (fraccional) del diagnóstico primario en las 10.000 permutaciones. Y trazamos una línea vertical en el valor encontrado en la zona de interés, a fin de ilustrar la posibilidad de obtener este resultado al azar.
-
-<img src="assets/distribucion.png">
+![Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos](assets/distribucion.png "Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos")
 
 ## Otros valores de interés
 El gráfico anterior, muestra que es extremadamente improbable obtener la incidencia del diagnostico primario de interés (malformaciones congénitas, deformidades y anomalías cromosómicas), que se observa la zona de interés, desde muestras del mismo tamaño tomadas al azar desde el resto de Chile.
@@ -55,116 +156,51 @@ A continuación cuantificamos la observación anterior con los siguientes númer
  - Incidencia promedio en muestras al azar desde el grupo de control
  - Desviación standard de muestras al azar desde el grupo de control
  - Cuantificación en desviaciones standards de cuanto se aleja la observación de interés desde el promedio de los 10.000 re-muestreos
- 
- 
-<pre>
-P-value: 0.0011
-Promedio de las muestras: 0.2709
-Desviación standard de las muestras: 0.0247
-Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.12
-</pre>
+
+```
+['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
+P-value: 0.00010
+Promedio de las muestras: 0.27083
+Desviación standard de las muestras: 0.02528
+Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.05
+
+['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón', 'Quintero']
+P-value: 0.00039
+Promedio de las muestras: 0.27103
+Desviación standard de las muestras: 0.02059
+Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.74
+
+['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
+P-value: 0.00002
+Promedio de las muestras: 0.27085
+Desviación standard de las muestras: 0.02239
+Distancia entre el promedio de las muestras y el grupo de interés en desviaciones standard: 3.45
+```
+
 ## Variaciones en el P-value
 A razón de haber observado variaciones en el primer dígito no-cero del P-value en las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en 2 ordenes de magnitud. Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, se toman sub-muestras del millón de muestras en incrementos de 500. Al graficar, el P-value en estas distintas cantidades de re-muestreos, se observa que con el n inicial de 10.000 se lograba estabilizar en su orden de magnitud (~0.01%), con un millón se logran estabilizar los primeros dos dígitos que no son cero (0.011%).
 
-<img src="assets/variacion-p-values.png">
+
+![Figura 8: Variaciones en P-values sobre cantidad de simulaciones](assets/variacion-p-values.png "Figura 8: Variaciones en P-values sobre cantidad de simulaciones")
+
 
 ## Conclusiones
-Con una posibilidad de 0.11% de encontrar el nivel de incidencia del diagnóstico _malformaciones congénitas, deformidades y anomalías cromosómicas_ (CIE-10: Q00-Q99) que se presenta en la zona de interés (34.8%) o mayor, podemos asumir que la incidencia mayor observada no es producto del azar. Correspondería a los expertos del área (salud, bioquímica, ecología, etc.) plantear rutas específicas que llevan al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, descartando las causales en sospecha, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
+
+
+Grupo | Distancia DS | P-Value | Comunas
+--|--|--|--
+0 |         3.05 | 0.00010| ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
+1 |         3.74 | 0.00039 | ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón', 'Quintero']
+2 |         3.45 | 0.00002 | ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
+
+
+Tales distancias (3.05, 3.74 y 3.45 desviaciones estandars) entre los valores observados y los promedios del grupo de control, así como los P-values observados en el millón de simulaciones por grupo y su estabilidad observada (figura 8). Muestran __evidencia cuantificada de mortalidad sobre-normal en la zona critica__.
+
+Si le restamos la incidencia nacional esperada $ (0.272  * 313, 0.272 * 471, 0.272 * 398) $ a los grupos de análisis $ (0.367  * 313, 0.342 * 471, 0.367 * 398) $ podremos estimar __estamos observando 29.73, 32.97 y 37.8 muertes de menores de 16 años en la zona, que no observaríamos en el resto de Chile a igual tamaño de muestra.__
+
+Se recomienda enfáticamente seguir observando estos números mientras la fuente de contaminación siga ahí, y por dos a tres décadas después de que el complejo industrial sea clausurado y la zona descontaminada.
+
+Se invita a los expertos relevante (salud, bioquímica, ecología, etc.) a investigar la rutas específicas que llevarían al incremento de las defunciones bajo este diagnóstico primario. Y por otra parte a los gobernantes hacer la prueba de campo, clausurando las fuentes y decontaminando el aréa, para poder observar en algunas décadas, la evolución de la incidencia de este diagnóstico primario en las defunciones de la zona.
 
 ### Potencial futuro de la metodología
-La técnica particular puede ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere el nombre: _Perico_ para tal script que _treparía por Chile_
-#### Contacto
-Vera Sativa  
-hola@verasativa.com
-
-# Bibliografía
-http://haghish.com/resources/materials/Statistical_Methods_for_Research_Workers.pdf
-
-## Publicaciones sobre la zona:
-[Spatial gradient of human health risk from exposure to trace elements and radioactive pollutants in soils at the Puchuncaví-Ventanas industrial complex, Chile.](https://www.sciencedirect.com/science/article/pii/S0269749116305693)  
-_S. Salmani Ghabeshi, M.R. Palomo Marin, E. Bernalte, F. Rueda Holgado, C. Miro Rodriguez, F. Cereceda Balic, X. Fadic, V. Vidal, M. Funes, E. Pinilla Gil_  
-2016, Environmental Pollution
-
-[Representaciones sociales acerca del impacto medioambiental de las empresas termoeléctricas en la bahía de Quintero-Puchuncaví](https://summapsicologica.cl/index.php/summa/article/view/188)  
-_Claudia Carrasco Aguilar, Pamela Morales Bierschwale, Jenniffer Salazar Fuentes_  
-2015, Summa Psicológica
-
-[Spatial distribution of copper and pH in soils affected by intensive industrial activities in Puchuncaví and Quintero, central Chile](http://jsspn.ufro.cl/index.php?option=com_docman&task=doc_download&gid=451&Itemid=6)  
-_I. Gonzalez, A. Neaman, P. Rubio, A. Cortes_  
-2014, Journal of soil science and plant nutrition
-
-Fractionation of trace elements in total atmospheric deposition by filtrating-bulk passive sampling.  
-_F. Rueda Holgado, M.R. Palomo Marin, L. Calvo Blazquez, F. Cereceda Balic, E. Pinilla Gil_  
-2014, Talanta
- 
-Selenium and its redox speciation in rainwater from sites of Valparaiso region in Chile, impacted by mining activities of copper ores.  
-_Gregori Ida De, Maria G. Lobos, Hugo Pinochet_  
-2002, Water research
- 
-Hypo-interventions: Intimate activism in toxic environments.  
-_Manuel Tironi_  
-2018, Social studies of science
-
-Proposed modification to avoidance test with Eisenia fetida to assess metal toxicity in agricultural soils affected by mining activities.  
-_Victor Delgadillo, Jose Verdejo, Pedro Mondaca, Gabriela Verdugo, Hernan Gaete, Mark E. Hodson, Alexander Neaman_  
-2017, Ecotoxicology and Environmental Safety
- 
-Distribution of trace elements in particle size fractions for contaminated soils by a copper smelting from different zones of the Puchuncaví Valley (Chile).  
-_Sonnia Parra, Manuel A. Bravo, Waldo Quiroz, Teresa Moreno, Angeliki Karanasiou, Oriol Font, Victor Vidal, Francisco Cereceda_  
-2014, Chemosphere
- 
-Effects of lime and compost on earthworm (Eisenia fetida) reproduction in copper and arsenic contaminated soils from the Puchuncaví Valley, Chile.  
-_Alexander Neaman, Soledad Huerta, Sebastien Sauve_  
-2012, Ecotoxicology and Environmental Safety
- 
-Long-term assessment of ecological risk from deposition of elemental pollutants in the vicinity of the industrial area of Puchuncaví-Ventanas, central Chile.  
-_Soroush Salmanighabeshi, M. Rosario Palomo Marin, Elena Bernalte, Fernando Rueda Holgado, Conrado Miro Rodriguez, Ximena Fadic Ruiz, Victor Vidal Cortez, Francisco Cereceda Balic, Eduardo Pinilla Gil_  
-2015, The Science of the total environment
- 
-Simultaneous immobilization of metals and arsenic in acidic polluted soils near a copper smelter in central Chile.  
-_Valeska Carcamo, Elena Bustamante, Elizabeth Trangolao, Luz Maria De La Fuente, Michel Mench, Alexander Neaman, Rosanna Ginocchio_  
-2012, Environmental Science and Pollution Research
- 
-Copper mobility in contaminated soils of the Puchuncaví valley, central Chile  
-_Alexander Neaman, Luis Reyes, Fabienne Trolard, Guilhem Bourrie, Sebastien Sauve_  
-2009, Geoderma
- 
-Conflicto ambiental en Ventanas: Análisis desde una perspectiva de la Doctrina Social de la Iglesia  
-_Kay Bergamini Ladron De Guevara, Ricardo Irarrazabal Sanchez, Piroska Angel Hernandez_  
-2018, Revista de Historia y Geografía
- 
-Temporal and spatial variation of trace elements in atmospheric deposition around the industrial area of Puchuncaví-Ventanas (Chile) and its influence on exceedances of lead and cadmium critical loads in soils.  
-_F. Rueda Holgado, L. Calvo Blazquez, F. Cereceda Balic, E. Pinilla Gil_  
-2016, Chemosphere
- 
-Amendments promote the development of Lolium perenne in soils affected by historical copper smelting operations.  
-_Paul Goecke, Rosanna Ginocchio, Michel Mench, Alexander Neaman_  
-2011, International Journal of Phytoremediation
- 
-Acumulación de cobre en una comunidad vegetal afectada por contaminación minera en el valle de Puchuncaví, Chile central  
-_Isabel Gonzalez, Victoria Muena, Mauricio Cisternas, Alexander Neaman_  
-2008, Revista chilena de historia natural
- 
-MODELACIÓN DE LA DISPERSIÓN DE ANHÍDRIDO SULFUROSO EN LA COMUNA DE LA COMUNA DE PUCHUNCAVÍ UTILIZANDO EL PROGRAMA ISC3  
-_Pamela Lazo, Michel Cure, Hernan Gaete_  
-2006, Ingeniare Revista chilena de ingeniería
- 
-Monitoring of copper, arsenic and antimony levels in agricultural soils impacted and non-impacted by mining activities, from three regions in Chile.  
-_Ida De Gregori, Edwar Fuentes, Mariela Rojas, Hugo Pinochet, Martine Potin Gautier_  
-2003, Journal of Environmental Monitoring
- 
-Effects of a copper smelter on a grassland community in the Puchuncaví Valley, Chile.  
-_R. Ginocchio_  
-2000, Chemosphere
- 
-Comparative Study of Copper and Selenium Pollution in Agricultural Ecosystems from Valparaiso Region, Chile  
-_I. De Gregori, G. Lobos, S. Lobos, H. Pinochet, M. Potin Gautier, M. Astruc_  
-2000, Environmental Technology
- 
-Acute effects of the breathing of industrial waste and of sulfur dioxide on the respiratory health of children living in the industrial area of Puchuncaví, Chile.  
-_J. Sanchez, I. Romieu, S. Ruiz, P. Pino, M. Gutierrez_  
-1999, Revista Panamericana de Salud Pública
- 
-Efectos agudos de las partículas respirables y del dióxido de azufre sobre la salud respiratoria en niños del área industrial de Puchuncaví, Chile  
-_Juan Sanchez, Isabelle Romieu, Silvia Ruiz, Paulina Pino, Monica Gutierrez_  
-1999, Revista Panamericana de Salud Pública
+La técnica particular puede ser escalada para buscar este tipo de fenómenos a nivel nacional sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [estos vectores](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere el nombre _Perico_ para tal algoritmo que _treparía por Chile_.

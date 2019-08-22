@@ -1,44 +1,43 @@
----
-title: 'Lenguaje de programación y testeo estadístico: El caso de Ventanas'
-subtitle: 'Una comparativa entre la zona crítica y resto de Chile' 
-author: 'Vera Sativa\footnote{Corresponding author – hola@verasativa.com}'
-bibliography: biblio.bib
-csl: canadian-journal-of-public-health.csl
-date: \today
-abstract: 'Utilizando el lenguaje de programación Python, tras unificar los registros anuales de defunciones en Chile 1998-2016 (~1.7M), analizamos los diagnósticos primarios en defunciones de menores de 16 años, comparando la zona crítica bajo la contaminación del complejo industrial Quintero-Ventanas, contra el resto de Chile como control. Encontramos incidencias de malformaciones congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99), 3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto de entre 29.73 a 37.8 muertes de menores en la zona crítica por sobre la norma nacional. La metodología podría ser escalada a todo el país para detectar focos de contaminación desconocidos.'
-margin-left: 20mm
-margin-right: 20mm
-margin-top: 18mm
-margin-bottom: 22mm
-links-as-notes: true
----
-<!--
 ### Meta 
 
 Este archivo está disponible en 3 versiones: 
 
  - [jupyter notebook original](readme.ipynb) (avanzado)
- - [html distribuible](../../raw/master/readme.html) (intermedio: click derecho descargar archivo )
- - mark down online (simplificado: es este archivo) 
+ - [pdf distribuible](../../raw/master/readme.pdf)
+ - mark down online (este archivo) 
  
-___ 
 # Lenguaje de programación y testeo estadístico: El caso de Ventanas 
+### Abstract
+Utilizando el lenguaje de programación Python, tras unificar los
+registros anuales de defunciones en Chile 1998-2016
+(~1.7M), analizamos los diagnósticos primarios en
+defunciones de menores de 16 años, comparando la zona crítica bajo la
+contaminación del complejo industrial Quintero-Ventanas, contra el resto
+de Chile como control. Encontramos incidencias de malformaciones
+congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99),
+3.04 a 3.75 desviaciones estándar sobre el resto del país, con P-values
+de 0.0001 a 0.00002 en un millón de simulaciones, estimando un impacto
+de entre 29.73 a 37.8 muertes de menores en la zona crítica por sobre la
+norma nacional. La metodología podría ser escalada a todo el país para
+detectar focos de contaminación desconocidos.
 
--->
+
 ## Una comparativa entre la zona crítica y el resto de Chile 
 ### Introducción 
 Mediante programación en _Python_ fue posible estandarizar los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida un [registro unificado de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Utilizando el mismo lenguaje de programación testearemos esa hipótesis.
 
 ### Antecedentes
-El impacto ambiental y a la salud humana del complejo industrial Quintero-Ventanas ha sido ampliamente documentado al punto de que el Colegio Medico chileno dedicó un número completo de su revista de salud pública _Cuadernos Médico Sociales_ [@cms59]
+El impacto ambiental y a la salud humana del complejo industrial
+Quintero-Ventanas ha sido ampliamente documentado al punto de que recientemente el Colegio Medico chileno dedicó un número completo de su revista de salud pública [Cuadernos Médico Sociales](http://cms.colegiomedico.cl/) al problema.
 
-Internacionalmente _The Lancet Commission on Pollution and Health_  dice que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios han mostrado asociación entre polución ambiental del aire y aumento del riesgo de síndrome de muerte súbita del lactante [@landrigan2017].
+El reciente informe _The Lancet Commission on Pollution and Health}_ señala que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios hanmostrado asociación entre polución ambiental del aire y aumento del riesgo de síndrome de muerte súbita del lactante.
 
 ### Comparación de diagnósticos primarios
-Apalancándose en la integración jerárquica de los códigos de diagnóstico CIE-10 en el dataset, una comparación de éstos, se presenta como la opción más evidente y atractiva, pero con algunas consideraciones.
+Para buscar una respuesta a la asociación entre contaminación ambiental y enfermedades de la gestación, es posible usar con todas sus limitaciones los registros de defunciones oficiales del país. Una forma de avanzar por sobre esas restricciones, es hacer uso de la integración jerárquica de los códigos de diagnóstico CIE-10 en el dataset, una comparación de éstos, se presenta como la opción más evidente y atractiva, mediante un trabajo de programación en Phyton. Este trabajo desarrolla una metodología de programación orientada al objeto de estudio y pone a Phyton como una alternativa para su uso en salud pública.
 
 ### Limitaciones
-Dado que este dataset solo incluye las defunciones y no contiene información sobre la población general, no es posible hacer un análisis respecto a tasas de ocurrencia sin tener que argumentar con otros datos como censos. Además, la ruralidad de la zona, conjugada con la migración campo-ciudad, produce una población envejecida. Tampoco podemos hacer un análisis sobre la distribución etaria de la mortalidad, ni la distribución de diagnósticos primarios en la población general, sin normalizar primero con datos adicionales.
+Dado que este dataset solo incluye las defunciones y no contiene información sobre la población general, no es posible hacer un análisis respecto a tasas de ocurrencia sin tener que usar datoscomo censos, dejando sólo el 2002 y el 2017 como estimaciones confiables. La ruralidad de la zona, conjugada con la migración campo-ciudad, produce un movimiento poblacional que en ese período aumenta la incertidumbre de las cifras. Tampoco podemos hacer un análisis sobre la distribución etaria de la mortalidad, ni la
+distribución de diagnósticos primarios en la población general, sin normalizar primero con datos adicionales.
 
 ### Pregunta de investigación
 Con esas limitaciones en mente, podemos plantear una pregunta sencilla, pero contestable:
@@ -46,7 +45,7 @@ Con esas limitaciones en mente, podemos plantear una pregunta sencilla, pero con
 __¿Cómo se comparan los diagnósticos primarios de defunciones, en la zona de interés con respecto al resto del país, en menores de 16 años?__
 
 ### Proceso exploratorio: definiendo la "zona de interés"
-Inicialmente, se exploró como zona de interés solamente las comunas de Quintero y Puchuncaví, a razón de ser las directamente colindates con el foco industrial de contaminación.
+Inicialmente, se exploró como zona de interés solamente las comunas de Quintero y Puchuncaví, puesto que son colindates (Quintero) o el lugar mismo del foco industrial de contaminación .
 
 ```
 Zona de interés: ['Quintero', 'Puchuncaví']
@@ -103,11 +102,11 @@ Ante esto, decidimos graficar la incidencia de interés en el mapa.
 
 ### Se observa una distribución no-radial: ¿Cómo se explica?
 
-En la figura 2 se puede apreciar que las comunas más afectadas parecen ser las directamente al norte (Puchuncaví, Zapallar, Papudo y La Ligua), al este (Nogales, La Calera y Quillota) e incluso directamente al sur (Con-con) del complejo industrial. 
+En la figura 2 se puede apreciar que las comunas más afectadas parecen ser las directamente al norte (Puchuncaví, Zapallar, Papudo y La Ligua), al este (Nogales, La Calera y Quillota) e incluso directamente al sur (Concón) del complejo industrial. 
 
-Al observar esta distribución no radial, la investigación parecía no tener sentido y se estancó durante un tiempo. Se sospechaba de un patrón de vientos. Para seguir avanzando, fue necesario que se nos refiriera a la investigación de Patricio Cornejo, Juan López y Sergio Romano 1983 [@cms80s], donde se creó un mapa que indica la dispersión de contaminación desde el complejo industrial Quintero-Ventanas. 
+Al observar esta distribución no radial, la investigación parecía no tener sentido y se estancó durante un tiempo. Se sospechaba de un patrón de vientos. Para seguir avanzando, fue necesario que se nos refiriera a la investigación de Patricio Cornejo, Juan López y Sergio Romano 1983, donde se creó un mapa que indica la dispersión de contaminación desde el complejo industrial Quintero-Ventanas. 
 
-Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), observamos una coincidencia interesante, que nos lleva a continuar. 
+Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), observamos una coincidencia interesante, que nos llevó a continuar. 
 
 ![Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto](assets/mapa-pluma.png "Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto")
 
@@ -117,7 +116,7 @@ Debido a que el mapa y la incidencia de Q00-Q99 parecieran indicar en la direcci
 A continuación, graficamos la incidencia en estos grupos e imprimimos algunos indicadores de representatividad como tamaño del grupo, y cuántos de sus diagnósticos primarios están entre los 10 principales que graficamos.
 
 ```
-Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
+Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales
 Total defunciones en el grupo de interés: 313
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 308
 Fracción del total: 0.984
@@ -126,7 +125,7 @@ Fracción del total: 0.984
 ![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
 
 ```
-Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón', 'Quintero']
+Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales, Concón, Quintero
 Total defunciones en el grupo de interés: 471
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 462
 Fracción del total: 0.981
@@ -135,7 +134,7 @@ Fracción del total: 0.981
 ![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
 
 ```
-Zona de interés: ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
+Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales, Concón
 Total defunciones en el grupo de interés: 398
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 390
 Fracción del total: 0.980
@@ -151,7 +150,7 @@ Para validar estas observaciones realizamos una prueba de permutación:
 
 Por cada grupo, tomamos un millón de muestras del mismo tamaño que el grupo de interés (308, 471 y 398) desde el grupo de control, y observaremos la distribución del diagnóstico primario de interés en estas muestras, a fin de responder:
 
-__¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se dan en nuestros grupos de interés en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control?__ (azar en contraste con casos seleccionados por zona geográfica de interés)
+__¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se dan en nuestros grupos de interés en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control??__ (azar en contraste con casos seleccionados por zona geográfica de interés)
 
 ![Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos](assets/distribucion.png "Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos")
 
@@ -202,7 +201,7 @@ Grupo | Distancia DS | P-Value | Comunas
 2 |         3.45 | 0.00002 | ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales', 'Concón']
 
 
-Tales distancias (3.05, 3.74 y 3.45 desviaciones estándar) entre los valores observados y los promedios del grupo de control (figura 7), así como los P-values observados en el millón de re-muestreos por grupo y su estabilidad observada (figura 8). Muestran __evidencia cuantificada de una mortalidad sobre-normal en la zona crítica__.
+Tales distancias (3.05, 3.74 y 3.45 desviaciones estándar) entre los valores observados y los promedios del grupo de control (figura 7), así como los p-values observados en el millón de re-muestreos por grupo y su estabilidad observada (figura 8), muestran __una cifra de mortalidad anómala en la zona en estudio__.
 
 Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar __estamos observando 29.73, 32.97 o 37.8 muertes de menores de 16 años en las zonas analizadas, que no observaríamos en el resto de Chile a igual tamaño de muestra__, en el periodo 1998-2016. 
 
@@ -212,3 +211,7 @@ Se invita a los expertos de las áreas relevantes (salud, bioquímica, ecología
 
 ### Potencial futuro de la metodología
 Esta técnica puede ser escalada a nivel nacional para buscar otros fenómenos del mismo tipo, sin especificar una zona en particular, lo que podría revelar problemas de salud pública fuera del "radar" de los investigadores. Para esto se requeriría construir un graph con comunas como nodos, y sus colindacias geográficas como vértices (tal vez con [los vectores de comunas de la biblioteca del congreso](https://www.bcn.cl/siit/mapas_vectoriales/index_html)), e iterar sobre grupos de comunas colindantes con un mínimo de registros totales. De realizarse, se sugiere nombrar _Perico_ a tal algoritmo que _treparía por Chile_.
+
+### Agradecimientos
+ - A mi padre —Dr. Yuri Carvajal— por la orientación bibliográfica, corrección e implementación de LaTeX.
+ - A la biblioteca Gabriela Mistral de Ñuñoa por haber sido mi "universidad anfitriona" durante los meses de esta investigación.

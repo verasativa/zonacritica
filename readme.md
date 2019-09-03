@@ -6,12 +6,12 @@ Este archivo está disponible en 3 versiones:
  - [pdf distribuible](../../raw/master/readme.pdf)
  - mark down online (este archivo) 
  
-# Lenguaje de programación y testeo estadístico: El caso de Ventanas 
+# Python y testeo estadístico: El caso de Ventanas 
 ### Abstract
 Utilizando el lenguaje de programación Python, tras unificar los
 registros anuales de defunciones en Chile 1998-2016
 (~1.7M), analizamos los diagnósticos primarios en
-defunciones de menores de 16 años, comparando la zona crítica bajo la
+defunciones de menores hasta 16 años, comparando la zona crítica bajo la
 contaminación del complejo industrial Quintero-Ventanas, contra el resto
 de Chile como control. Encontramos incidencias de malformaciones
 congénitas, deformidades y anomalías cromosómicas (CIE-10: Q00-Q99),
@@ -26,26 +26,28 @@ detectar focos de contaminación desconocidos.
 ### Introducción 
 Mediante programación en _Python_ fue posible estandarizar los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida un [registro unificado de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Utilizando el mismo lenguaje de programación testearemos esa hipótesis.
 
-### Antecedentes
-El impacto ambiental y a la salud humana del complejo industrial
-Quintero-Ventanas ha sido ampliamente documentado al punto de que recientemente el Colegio Medico chileno dedicó un número completo de su revista de salud pública [Cuadernos Médico Sociales](http://cms.colegiomedico.cl/) al problema.
+Un aporte clave es la metodología, y por esta razón se disponibiliza todo el [código fuente](readme.ipynb), posibilitando la implementación y extensión de ésta en otros problemas, territorios o datasets. 
 
-El reciente informe _The Lancet Commission on Pollution and Health}_ señala que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios hanmostrado asociación entre polución ambiental del aire y aumento del riesgo de síndrome de muerte súbita del lactante.
+### Antecedentes
+El impacto ambiental y sobre la salud humana del complejo industrial
+Quintero-Ventanas ha sido ampliamente documentado al punto de que recientemente el Colegio Medico chileno dedicó un número completo de su revista de salud pública [Cuadernos Médico Sociales](https://view.joomag.com/cuadernos-m%C3%A9dicos-sociales-2019-vol-59-n1/0276621001558620771?short) al problema.
+
+El reciente informe [The Lancet Commission on Pollution and Health](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32345-0/fulltext) señala que la polución del aire puede ser vinculada al aumento de nacimientos prematuros y con bajo peso. Y que algunos estudios hanmostrado asociación entre polución ambiental del aire y aumento del riesgo de síndrome de muerte súbita del lactante.
 
 ### Comparación de diagnósticos primarios
-Para buscar una respuesta a la asociación entre contaminación ambiental y enfermedades de la gestación, es posible usar con todas sus limitaciones los registros de defunciones oficiales del país. Una forma de avanzar por sobre esas restricciones, es hacer uso de la integración jerárquica de los códigos de diagnóstico CIE-10 en el dataset, una comparación de éstos, se presenta como la opción más evidente y atractiva, mediante un trabajo de programación en Phyton. Este trabajo desarrolla una metodología de programación orientada al objeto de estudio y pone a Phyton como una alternativa para su uso en salud pública.
+Para buscar una respuesta a la asociación entre contaminación ambiental y enfermedades de la gestación, es posible usar con todas sus limitaciones los registros de defunciones oficiales del país. Una forma de avanzar por sobre esas restricciones, es hacer uso de [la integración jerárquica de los códigos de diagnóstico CIE-10](https://github.com/verasativa/CIE-10) en el dataset, una comparación de éstos, se presenta como la opción más evidente y atractiva, mediante un trabajo de programación en Phyton. Este trabajo desarrolla una metodología de programación orientada al objeto de estudio y pone a Phyton como una alternativa para su uso en salud pública.
 
-### Limitaciones
-Dado que este dataset solo incluye las defunciones y no contiene información sobre la población general, no es posible hacer un análisis respecto a tasas de ocurrencia sin tener que usar datoscomo censos, dejando sólo el 2002 y el 2017 como estimaciones confiables. La ruralidad de la zona, conjugada con la migración campo-ciudad, produce un movimiento poblacional que en ese período aumenta la incertidumbre de las cifras. Tampoco podemos hacer un análisis sobre la distribución etaria de la mortalidad, ni la
+### Limitaciones de los datos
+Para entender que podemos investigar desde estos datos, debemos reconocer sus limitaciones. Dado que este dataset solo incluye las defunciones y no contiene información sobre la población general, no es posible hacer un análisis respecto a tasas de ocurrencia sin tener que usar datoscomo censos. La ruralidad de la zona, conjugada con la migración campo-ciudad, produce un movimiento poblacional que en ese período aumenta la incertidumbre de las cifras. Tampoco podemos hacer un análisis sobre la distribución etaria de la mortalidad, ni la
 distribución de diagnósticos primarios en la población general, sin normalizar primero con datos adicionales.
 
 ### Pregunta de investigación
 Con esas limitaciones en mente, podemos plantear una pregunta sencilla, pero contestable:
 
-__¿Cómo se comparan los diagnósticos primarios de defunciones, en la zona de interés con respecto al resto del país, en menores de 16 años?__
+__¿Cómo se comparan los diagnósticos primarios de defunciones, en la zona de interés con respecto al resto del país, en menores hasta 16 años?__
 
 ### Proceso exploratorio: definiendo la "zona de interés"
-Inicialmente, se exploró como zona de interés solamente las comunas de Quintero y Puchuncaví, puesto que son colindates (Quintero) o el lugar mismo del foco industrial de contaminación .
+Inicialmente, se exploró como zona de interés solamente las comunas de Quintero y Puchuncaví, puesto que son colindantes (Quintero) o el lugar mismo del foco industrial de contaminación.
 
 ```
 Zona de interés: ['Quintero', 'Puchuncaví']
@@ -54,11 +56,11 @@ Total defunciones en los 10 principales diagnósticos primarios del grupo de int
 Fracción del total: 0.992
 ```
 
-![Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)](assets/10-diagnosticos-(Quintero-Puchuncavi).png "Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Quintero-Puchuncaví)")
+![Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Quintero-Puchuncaví)](assets/10-diagnosticos-(Quintero-Puchuncavi).png "Figura 1: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Quintero-Puchuncaví)")
 
 
 
-Sin embargo, podemos observar en la figura 1 que hay dos diagnósticos primarios que presentan incidencias superiores a la nacional. Con la intención de buscar una tendencia más clara y validable (tamaño de la muestra), exploramos la incidencia de estos dos diagnósticos primarios en todas las comunas de la Quinta Región.
+Sin embargo, no se econtró algo claro ya que podemos observar en la figura 1 que hay dos diagnósticos primarios que presentan incidencias superiores a la nacional. Con la intención de buscar una tendencia más clara y validable (tamaño de la muestra), exploramos la incidencia de estos dos diagnósticos primarios en todas las comunas de la Quinta Región.
 
 ### Ciertas afecciones originadas en el período perinatal (P00-P96)
 
@@ -108,39 +110,42 @@ Al observar esta distribución no radial, la investigación parecía no tener se
 
 Al sobreponer ese mapa sobre nuestras incidencias (Figura 3), observamos una coincidencia interesante, que nos llevó a continuar. 
 
-![Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto](assets/mapa-pluma.png "Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto")
+![Figura 3: Mapa de incidencias comunales con modelo pluma sobrepuesto](assets/mapa-pluma.png "Figura 3: Mapa de incidencias comunales con modelo pluma (Cornejo, López y Romano 1983)")
 
 ### Diferentes zonas de interés
 Debido a que el mapa y la incidencia de Q00-Q99 parecieran indicar en la dirección opuesta de la ciudad de Quintero, y la sospecha de que Concón tenga su propia fuente de contaminación (Refinería de petróleo ENAP), analizamos tres grupos en paralelo: El primero excluyendo Concón y Quintero, el segundo incluyendo ambas comunas, y el tercero incluyendo Concón y excluyendo Quintero. 
 
-A continuación, graficamos la incidencia en estos grupos e imprimimos algunos indicadores de representatividad como tamaño del grupo, y cuántos de sus diagnósticos primarios están entre los 10 principales que graficamos.
+A continuación, graficamos la incidencia del diagnóstico primario en estos grupos e imprimimos algunos indicadores de representatividad como tamaño del grupo, y cuántos de sus diagnósticos primarios están entre los 10 principales que graficamos.
 
 ```
+Grupo 1
 Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales
 Total defunciones en el grupo de interés: 313
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 308
 Fracción del total: 0.984
 ```
 
-![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
+![Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales).png "Figura 4: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales)")
 
 ```
+Grupo 2
 Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales, Concón, Quintero
 Total defunciones en el grupo de interés: 471
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 462
 Fracción del total: 0.981
 ```
 
-![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
+![Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon-Quintero).png "Figura 5: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón-Quintero)")
 
 ```
+Grupo 3
 Zona de interés: Puchuncaví, Zapallar, Papudo, La Ligua, Petorca, Cabildo, Nogales, Concón
 Total defunciones en el grupo de interés: 398
 Total defunciones en los 10 principales diagnósticos primarios del grupo de interés: 390
 Fracción del total: 0.980
 ```
 
-![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores de 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
+![Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)](assets/10-diagnosticos-(Puchuncavi-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concon).png "Figura 6: Distribución de los 10 mayores diagnósticos primarios en defunciones de menores hasta 16 años (Puchuncaví-Zapallar-Papudo-LaLigua-Petorca-Cabildo-Nogales-Concón)")
 
 ## Observaciones
 Al comparar estos gráficos, inmediatamente notamos que el diagnóstico primario _Malformaciones congénitas, deformidades y anomalías cromosómicas_ (CIE-10: Q00-Q99), es considerablemente más alto en los grupos de interés que en el resto del país como grupo de control (36.7%, 34.2% y 36.7% por sobre 27.2%).
@@ -148,9 +153,9 @@ Al comparar estos gráficos, inmediatamente notamos que el diagnóstico primario
 ## Validación
 Para validar estas observaciones realizamos una prueba de permutación:
 
-Por cada grupo, tomamos un millón de muestras del mismo tamaño que el grupo de interés (308, 471 y 398) desde el grupo de control, y observaremos la distribución del diagnóstico primario de interés en estas muestras, a fin de responder:
+Por cada grupo, tomamos un millón de muestras al azar del mismo tamaño que el grupo de interés (308, 471 y 398) desde el grupo de control, y observaremos la distribución del diagnóstico primario de interés en estas muestras,  en contraste con casos seleccionados por zona geográfica de interés, a fin de responder:
 
-__¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se dan en nuestros grupos de interés en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control??__ (azar en contraste con casos seleccionados por zona geográfica de interés)
+__¿Qué tan probable es observar las incidencias (36.7%, 34.2% y 36.7%) que se dan en nuestros grupos de interés en cualquier otro grupo del mismo tamaño muestreado al azar desde el grupo de control??__
 
 ![Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos](assets/distribucion.png "Figura 7: Distribución fracción de casos Q00-Q99 en 1 millón de re-muestreos")
 
@@ -162,7 +167,7 @@ A continuación cuantificamos la observación anterior con los siguientes númer
  - Probabilidad de obtener este resultado, o más, al azar (P-Value)
  - Incidencia promedio en muestras al azar desde el grupo de control
  - Desviación estándard de muestras al azar desde el grupo de control
- - Cuantificación en desviaciones estándard de cuánto se aleja la observación de interés desde el promedio de un millón de re-muestreos
+ - Cuantificación en desviaciones estándar respecto del grupo de control, desde los grupos en el promedio de un millón de re-muestreos
 
 ```
 ['Puchuncaví', 'Zapallar', 'Papudo', 'La Ligua', 'Petorca', 'Cabildo', 'Nogales']
@@ -185,7 +190,7 @@ Distancia entre el promedio de las muestras y el grupo de interés en desviacion
 ```
 
 ## Variaciones en el P-value
-A razón de haber observado variaciones en el primer dígito no-cero del P-value en las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en 2 ordenes de magnitud. Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, tomamos sub-muestras del millón de muestras en incrementos de 500. Al graficar el P-value en estas distintas cantidades de re-muestreos, se observa que en el n inicial de 10.000 se lograba estabilizar en su orden de magnitud, pero con un millón se estabilizaba considerablemente más.
+A razón de haber observado variaciones en el primer dígito no-cero del p-value durante las primeras ejecuciones de 10.000 re-muestreos, se aumento la cantidad de re-muestreos en dos órdenes de magnitud (a un millón). Y para entender como se comporta este P-value respecto a la cantidad de re-muestreos, tomamos sub-muestras del millón de muestras, incrementando su tamaño iterativamente en 500 re-muestreos. Al graficar el p-value en estos distintos tamaños de re-muestreos, se observa que en el n inicial de 10.000 el p-value se lograba estabilizar en su orden de magnitud, pero con un millón se estabilizaba considerablemente más.
 
 
 ![Figura 8: Variaciones en P-values sobre cantidad de simulaciones](assets/variacion-p-values.png "Figura 8: Variaciones en P-values sobre cantidad de simulaciones")
@@ -203,7 +208,7 @@ Grupo | Distancia DS | P-Value | Comunas
 
 Tales distancias (3.05, 3.74 y 3.45 desviaciones estándar) entre los valores observados y los promedios del grupo de control (figura 7), así como los p-values observados en el millón de re-muestreos por grupo y su estabilidad observada (figura 8), muestran __una cifra de mortalidad anómala en la zona en estudio__.
 
-Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar __estamos observando 29.73, 32.97 o 37.8 muertes de menores de 16 años en las zonas analizadas, que no observaríamos en el resto de Chile a igual tamaño de muestra__, en el periodo 1998-2016. 
+Si le restamos la incidencia nacional esperada _(0.272  * 313, 0.272 * 471, 0.272 * 398)_ a los grupos de análisis _(0.367  * 313, 0.342 * 471, 0.367 * 398)_ podremos estimar que __estamos observando 29.73, 32.97 o 37.8 muertes de menores hasta 16 años en las zonas analizadas, que no observaríamos en el resto de Chile a igual tamaño de muestra__, en el periodo 1998-2016. 
 
 Se recomienda enfáticamente seguir observando estos números mientras la fuente de contaminación siga ahí, y durante dos a tres décadas después de que el complejo industrial sea clausurado y la zona, descontaminada.
 

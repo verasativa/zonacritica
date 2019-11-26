@@ -6,9 +6,10 @@ Este archivo está disponible en 3 versiones:
  - [pdf distribuible](../../raw/master/readme.pdf)
  - mark down online (este archivo) 
  
-# Python y testeo estadístico: El caso de Ventanas 
+# Diagnósticos primarios del registro de defunciones Chilenas 1998-2016
+## Una comparativa entre la zona crítica y resto de Chile
 ### Abstract
-Utilizando el lenguaje de programación Python, tras unificar los
+Tras unificar los
 registros anuales de defunciones en Chile 1998-2016
 (~1.7M), analizamos los diagnósticos primarios en
 defunciones de menores hasta 16 años, comparando la zona crítica bajo la
@@ -21,8 +22,6 @@ de entre 29.73 a 37.8 muertes de menores en la zona crítica por sobre la
 norma nacional. La metodología podría ser escalada a todo el país para
 detectar focos de contaminación desconocidos.
 
-
-## Una comparativa entre la zona crítica y el resto de Chile 
 ### Introducción 
 Mediante programación en _Python_ fue posible estandarizar los registros de defunciones oficiales, que tienen una serie de variaciones año a año. Una vez construida un [registro unificado de defunciones en Chile, entre el año 1998 y 2016](https://github.com/verasativa/defunciones-decoder), surge la pregunta general: ¿Se podrán observar en éste, rasgos distintos en una zona crítica al resto de Chile? Utilizando el mismo lenguaje de programación testearemos esa hipótesis.
 
